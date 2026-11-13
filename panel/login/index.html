@@ -12,7 +12,7 @@ button:disabled{opacity:.6;cursor:wait}.msg{margin-top:14px;color:#ff8eae;min-he
 <form id="loginForm"><label for="password">Password admin</label><input id="password" type="password" autocomplete="current-password" required placeholder="Masukkan password admin"><button id="submit" type="submit">MASUK DASHBOARD</button><div class="msg" id="msg" role="status"></div></form>
 <a class="back" href="/home/">← Kembali ke halaman utama</a></main>
 <script>
-const API = "https://script.google.com/macros/s/AKfycbxqINgb_M0tdPCkM9QTeduy6LxSMQMUUl4lWOPeHfdx2Adu1dNvT-BZD8wPtAzXsMo/exec";
+const API = "https://script.google.com/macros/s/AKfycbz-Kn2Dvg9yq3k80qpSf6bkDgg_pVti92rrc0v5428jK1yaSCroRu1HPdU0mE754oI2NA/exec";
 async function callApi(payload){
  const r=await fetch(API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload),redirect:"follow"});
  return await r.json();

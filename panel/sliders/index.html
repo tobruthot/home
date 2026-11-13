@@ -11,7 +11,7 @@
 <button class="btn" id="save" type="submit">Simpan slider</button><button class="btn gray" id="reset" type="button">Reset</button><div id="msg" class="hint"></div></form></section>
 <section class="panel"><div style="display:flex;justify-content:space-between;align-items:center"><h2>Daftar slider</h2><button class="btn gray" id="refresh" style="margin:0">Refresh</button></div><div id="list" class="hint">Memuat...</div></section></div></main>
 <script>
-const API="https://script.google.com/macros/s/AKfycbxqINgb_M0tdPCkM9QTeduy6LxSMQMUUl4lWOPeHfdx2Adu1dNvT-BZD8wPtAzXsMo/exec",token=sessionStorage.getItem("tb_admin_token");if(!token)location.replace("/home/panel/login/index.html");const $=id=>document.getElementById(id);
+const API="https://script.google.com/macros/s/AKfycbz-Kn2Dvg9yq3k80qpSf6bkDgg_pVti92rrc0v5428jK1yaSCroRu1HPdU0mE754oI2NA/exec",token=sessionStorage.getItem("tb_admin_token");if(!token)location.replace("/home/panel/login/index.html");const $=id=>document.getElementById(id);
 async function api(action,extra={}){const r=await fetch(API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action,sessionToken:token,...extra})});const j=await r.json();if(!j.success)throw new Error(j.message||"API error");return j.data}
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function reset(){ $("form").reset();$("slideId").value="";$("sortOrder").value="1";$("formTitle").textContent="Tambah slider";$("save").textContent="Simpan slider";$("msg").textContent=""}

@@ -1,546 +1,113 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AFTERDARK - 18+ Portal</title>
-
-<style>
-:root {
-  --bg:#101014;
-  --panel:#19191f;
-  --text:#fff;
-  --muted:#999;
-  --accent:#e83c75;
-}
-
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-body {
-  background:var(--bg);
-  color:var(--text);
-  font-family:Arial,sans-serif;
-}
-
-header {
-  min-height:70px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:15px 5%;
-  background:#19191f;
-  border-bottom:1px solid #303039;
-  position:sticky;
-  top:0;
-  z-index:10;
-}
-
-.logo {
-  font-size:24px;
-  font-weight:900;
-}
-
-.logo span {color:var(--accent);}
-
-nav {
-  display:flex;
-  gap:22px;
-}
-
-nav a {
-  color:#ccc;
-  text-decoration:none;
-  font-size:14px;
-}
-
-.search {
-  padding:11px 14px;
-  background:#292930;
-  border:1px solid #393943;
-  border-radius:7px;
-  color:white;
-  outline:none;
-}
-
-.container {
-  width:90%;
-  max-width:1400px;
-  margin:auto;
-}
-
-.hero {
-  margin-top:30px;
-  min-height:260px;
-  padding:40px;
-  border-radius:13px;
-  display:flex;
-  align-items:center;
-  background:linear-gradient(110deg,#48213c,#211b32,#14141b);
-}
-
-.hero h1 {
-  font-size:36px;
-  margin-bottom:12px;
-}
-
-.hero p {
-  color:#ccc;
-  line-height:1.6;
-  margin-bottom:20px;
-}
-
-.btn {
-  padding:12px 20px;
-  background:var(--accent);
-  color:white;
-  border:0;
-  border-radius:6px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.section {
-  margin-top:38px;
-}
-
-.section-title {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:18px;
-}
-
-.section-title h2 {
-  font-size:21px;
-}
-
-.section-title span {
-  font-size:12px;
-  font-weight:bold;
-}
-
-.free-label {color:#35cf91;}
-.vip-label {color:#ed4380;}
-
-.content-grid {
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
-}
-
-.card {
-  background:var(--panel);
-  border:1px solid #303039;
-  border-radius:10px;
-  overflow:hidden;
-  transition:.2s;
-}
-
-.card:hover {
-  transform:translateY(-4px);
-  border-color:var(--accent);
-}
-
-.thumbnail {
-  height:165px;
-  background:linear-gradient(135deg,#51243e,#29243c);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:38px;
-}
-
-.card-info {
-  padding:14px;
-}
-
-.card-info h3 {
-  font-size:15px;
-  margin-bottom:8px;
-}
-
-.card-info p {
-  color:var(--muted);
-  font-size:12px;
-}
-
-.tag {
-  display:inline-block;
-  padding:5px 8px;
-  background:#492136;
-  color:#ff8eb1;
-  font-size:10px;
-  border-radius:4px;
-  margin-bottom:10px;
-}
-
-/* VIP THUMBNAIL */
-
-.vip-thumbnail {
-  height:165px;
-  position:relative;
-  overflow:hidden;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:
-    radial-gradient(circle at 30% 40%,#a43c72,#32233e 55%,#17171e);
-}
-
-.vip-thumbnail::before {
-  content:"";
-  position:absolute;
-  inset:-15px;
-  background:linear-gradient(135deg,#8d3268,#27213b);
-  filter:blur(20px);
-  transform:scale(1.2);
-}
-
-.vip-thumbnail::after {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.65);
-}
-
-.vip-content {
-  position:relative;
-  z-index:2;
-  text-align:center;
-}
-
-.vip-lock {
-  font-size:23px;
-}
-
-.vip-content h3 {
-  font-size:19px;
-  font-weight:900;
-  margin:7px 0 12px;
-  letter-spacing:1px;
-}
-
-.vip-content button {
-  background:var(--accent);
-  color:white;
-  border:0;
-  border-radius:5px;
-  padding:8px 11px;
-  font-size:10px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.vip-content button:hover {
-  background:#ff5b91;
-}
-
-footer {
-  margin-top:60px;
-  padding:30px;
-  text-align:center;
-  background:#19191f;
-  color:#888;
-  font-size:13px;
-}
-
-/* AGE VERIFICATION */
-
-.age-overlay {
-  position:fixed;
-  inset:0;
-  z-index:100;
-  background:rgba(0,0,0,.97);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-
-.age-box {
-  background:#1d1d25;
-  border:1px solid #393943;
-  border-radius:13px;
-  padding:35px;
-  max-width:400px;
-  width:100%;
-  text-align:center;
-}
-
-.age-box h2 {
-  color:var(--accent);
-  margin-bottom:15px;
-}
-
-.age-box p {
-  color:#aaa;
-  line-height:1.6;
-  margin-bottom:22px;
-}
-
-.age-actions {
-  display:flex;
-  gap:10px;
-}
-
-.age-actions button {
-  flex:1;
-}
-
-.exit-btn {
-  background:#383840;
-}
-
-.hidden {display:none;}
-
-@media(max-width:950px) {
-  .content-grid {
-    grid-template-columns:repeat(3,1fr);
-  }
-}
-
-@media(max-width:650px) {
-  header {
-    flex-wrap:wrap;
-    gap:15px;
-  }
-
-  nav {
-    width:100%;
-    overflow-x:auto;
-    order:3;
-  }
-
-  .search {
-    width:145px;
-  }
-
-  .hero {
-    padding:25px;
-    min-height:220px;
-  }
-
-  .hero h1 {font-size:27px;}
-
-  .content-grid {
-    grid-template-columns:repeat(2,1fr);
-    gap:11px;
-  }
-
-  .thumbnail,.vip-thumbnail {
-    height:120px;
-  }
-
-  .card-info {padding:10px;}
-
-  .vip-content h3 {font-size:14px;}
-
-  .vip-content button {
-    font-size:8px;
-    padding:7px;
-  }
-}
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TOBRUTHOT — Home</title><style>
+:root{--bg:#101014;--nav:#1a1920;--panel:#211e29;--pink:#ec367b;--muted:#aaa7b4;--green:#20d49a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#fff;font:16px Arial,sans-serif}.nav{height:74px;background:var(--nav);border-bottom:1px solid #302d38;display:flex;align-items:center;justify-content:space-between;padding:0 5%;gap:20px;position:sticky;top:0;z-index:5}.brand{font-size:29px;font-weight:900;letter-spacing:-1px}.brand span{color:var(--pink)}.navlinks{display:flex;gap:28px}.nav a{color:#eee;text-decoration:none}.search{padding:13px 16px;background:#292730;border:1px solid #403c49;border-radius:9px;color:#fff;width:240px}
+.wrap{max-width:1700px;margin:auto;padding:22px 4%}.slider{position:relative;overflow:hidden;border-radius:16px;background:linear-gradient(110deg,#48243d,#171620);height:clamp(230px,24vw,380px);margin-bottom:28px}.slides{height:100%;display:flex;transition:transform .55s ease}.slide{min-width:100%;height:100%;position:relative;background:#211d29 center/cover no-repeat;display:flex;align-items:center;padding:5%;isolation:isolate}.slide:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#100d16e8,#100d1640);z-index:-1}.slideText{max-width:620px}.slide h1{font-size:clamp(27px,3.2vw,46px);margin:0 0 12px}.slide p{color:#e2dce6;line-height:1.5}.cta{display:inline-block;background:var(--pink);padding:13px 22px;border-radius:8px;font-weight:bold;margin-top:8px}.arrow{position:absolute;top:50%;transform:translateY(-50%);border:0;background:#0008;color:#fff;width:42px;height:48px;border-radius:8px;cursor:pointer;font-size:25px}.prev{left:14px}.next{right:14px}.dots{position:absolute;bottom:16px;left:0;right:0;display:flex;justify-content:center;gap:8px}.dots button{width:9px;height:9px;border:0;border-radius:50%;background:#ffffff80;cursor:pointer;padding:0}.dots button.active{background:var(--pink);width:24px;border-radius:8px}
+.sectionHead{display:flex;justify-content:space-between;align-items:center;margin:22px 0 16px}.sectionHead h2{margin:0}.tag{color:var(--green);font-weight:bold;font-size:13px}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}.card{background:var(--panel);border:1px solid #342f3c;border-radius:12px;overflow:hidden}.thumb{width:100%;aspect-ratio:16/9;object-fit:cover;background:linear-gradient(120deg,#48243d,#211d29);display:block}.cardBody{padding:14px}.card h3{font-size:17px;margin:0 0 7px}.card p{color:var(--muted);font-size:13px;line-height:1.45}.play{display:inline-block;margin-top:8px;color:#fff;background:var(--pink);padding:9px 13px;border-radius:7px;text-decoration:none;font-size:13px;font-weight:bold}.locked .thumb{filter:blur(5px) brightness(.45)}.locked .cardBody{position:relative}.locked .play{background:#514451}.desc a{color:#ff80ae;text-decoration:underline;overflow-wrap:anywhere}.empty{color:var(--muted);padding:20px;background:#191820;border-radius:10px}
+@media(max-width:1050px){.cards{grid-template-columns:repeat(3,1fr)}}@media(max-width:760px){.nav{height:auto;min-height:66px;flex-wrap:wrap;padding:14px 18px}.brand{font-size:23px}.navlinks{order:3;width:100%;justify-content:center}.search{width:160px}.wrap{padding:16px}.cards{grid-template-columns:repeat(2,1fr)}.slider{height:280px}.slide{padding:9% 12%}}@media(max-width:450px){.cards{grid-template-columns:1fr}.search{width:130px}.slide p{font-size:14px}}
 </style>
-</head>
+<style>
+.vip-modal{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.82);padding:18px;align-items:center;justify-content:center}
+.vip-modal.open{display:flex}
+.vip-modal-box{position:relative;width:min(470px,100%);background:#1b1a22;border:1px solid #403746;border-radius:16px;padding:28px 24px 24px;box-shadow:0 24px 80px #000b;color:#fff}
+.vip-modal-box h2{text-align:center;color:#f04a89;font-size:21px;margin:0 28px 20px}
+.vip-modal-close{position:absolute;right:13px;top:10px;border:0;background:transparent;color:#aaa;font-size:28px;cursor:pointer}
+.vip-modal-row{padding:15px 0;border-top:1px solid #38333f}
+.vip-modal-message{white-space:pre-wrap;line-height:1.65;color:#e4dfe8;text-align:center}
+.vip-modal-link-row{text-align:center}
+.vip-modal-link-row a{display:inline-block;background:#e83c75;color:white;text-decoration:none;font-weight:bold;border-radius:8px;padding:12px 18px;max-width:100%;overflow-wrap:anywhere}
+.vip-code-row label{display:block;color:#ddd;font-size:13px;line-height:1.5;margin-bottom:9px}
+.vip-code-row input{width:100%;padding:13px;border:1px solid #45404b;border-radius:8px;background:#111116;color:#fff;font-size:15px;outline:none}
+.vip-code-row input:focus{border-color:#e83c75}
+.vip-code-row button{width:100%;padding:13px;margin-top:10px;border:0;border-radius:8px;background:#e83c75;color:#fff;font-weight:bold;cursor:pointer}
+#vipCodeMessage{min-height:19px;margin-top:9px;text-align:center;font-size:13px;color:#ff91b3}
+@media(max-width:480px){.vip-modal-box{padding:25px 18px 18px}.vip-modal-box h2{font-size:18px}}
+</style>
+</head><body><header class="nav"><a class="brand" href="/home/">TOBRU<span>THOT</span></a><nav class="navlinks"><a href="/home/">Home</a><a href="#free">Gratis</a><a href="#vip">VIP</a></nav><input id="search" class="search" placeholder="Cari konten..."></header>
+<main class="wrap"><section class="slider" id="slider"><div class="slides" id="slides"><article class="slide"><div class="slideText"><h1>Selamat datang di TOBRUTHOT</h1><p>Jelajahi koleksi konten dan hiburan dalam satu platform.</p></div></article></div><button class="arrow prev" id="prev" aria-label="Sebelumnya">‹</button><button class="arrow next" id="next" aria-label="Berikutnya">›</button><div class="dots" id="dots"></div></section>
+<section id="free"><div class="sectionHead"><h2>Konten Gratis</h2><span class="tag">FREE ACCESS</span></div><div class="cards" id="freeCards"><div class="empty">Memuat konten...</div></div></section>
+<section id="vip" style="margin-top:34px"><div class="sectionHead"><h2>Konten VIP</h2><span style="color:#ff78a7;font-weight:bold;font-size:13px">VIP ACCESS</span></div><div class="cards" id="vipCards"><div class="empty">Memuat konten...</div></div></section></main>
+<div id="playerModal" style="display:none;position:fixed;inset:0;background:#000e;z-index:20;align-items:center;justify-content:center;padding:18px" onclick="if(event.target===this)closePlayer()"><div style="width:min(960px,100%);background:#17151d;border-radius:12px;padding:12px"><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 4px 12px"><b>TOBRUTHOT Player</b><button onclick="closePlayer()" style="background:#ec367b;border:0;color:#fff;padding:8px 12px;border-radius:7px">Tutup ✕</button></div><iframe id="playerFrame" src="about:blank" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="width:100%;aspect-ratio:16/9;border:0;background:#000"></iframe></div></div>
 
-<body>
-
-<!-- AGE VERIFICATION -->
-<div class="age-overlay" id="ageOverlay">
-  <div class="age-box">
-    <h2>18+ AGE VERIFICATION</h2>
-    <p>Website ini hanya untuk pengunjung berusia minimal 18 tahun.</p>
-    <div class="age-actions">
-      <button class="btn" onclick="enterSite()">YA, SAYA 18+</button>
-      <button class="btn exit-btn" onclick="exitSite()">TIDAK</button>
-    </div>
+<div id="vipAccessModal" class="vip-modal" aria-hidden="true">
+ <div class="vip-modal-box" role="dialog" aria-modal="true" aria-labelledby="vipModalTitle">
+  <button class="vip-modal-close" type="button" onclick="closeVipModal()" aria-label="Tutup">×</button>
+  <h2 id="vipModalTitle">AKSES MEMBER VIP</h2>
+  <div class="vip-modal-row vip-modal-message" id="vipPopupMessage"></div>
+  <div class="vip-modal-row vip-modal-link-row" id="vipPopupLinkRow">
+   <a id="vipPopupLink" href="#" target="_blank" rel="noopener noreferrer">DAPATKAN AKSES VIP</a>
   </div>
+  <form id="vipCodeForm" class="vip-modal-row vip-code-row">
+   <label id="vipPopupCodeLabel" for="vipCodeInput">Sudah punya kode VIP? Masukkan kode kamu di sini.</label>
+   <input id="vipCodeInput" type="text" autocomplete="off" placeholder="Masukkan kode VIP" required>
+   <button type="submit" id="vipCodeSubmit">AKTIFKAN VIP</button>
+   <div id="vipCodeMessage" role="status" aria-live="polite"></div>
+  </form>
+ </div>
 </div>
 
-<header>
-  <div class="logo">AFTER<span>DARK</span></div>
-
-  <nav>
-    <a href="#">Home</a>
-    <a href="#free">Gratis</a>
-    <a href="#vip">VIP</a>
-  </nav>
-
-  <input class="search" id="searchInput"
-    placeholder="Cari konten...">
-</header>
-
-<main class="container">
-
-  <section class="hero">
-    <div>
-      <h1>Welcome to AfterDark</h1>
-      <p>Jelajahi koleksi konten eksklusif dan hiburan dalam satu platform.</p>
-      <button class="btn"
-        onclick="document.getElementById('free').scrollIntoView({behavior:'smooth'})">
-        JELAJAHI SEKARANG
-      </button>
-    </div>
-  </section>
-
-  <!-- GRATIS -->
-  <section class="section" id="free">
-    <div class="section-title">
-      <h2>Konten Gratis</h2>
-      <span class="free-label">FREE ACCESS</span>
-    </div>
-
-    <div class="content-grid">
-
-      <article class="card">
-        <div class="thumbnail">▶</div>
-        <div class="card-info">
-          <span class="tag">GRATIS</span>
-          <h3>Free Collection 01</h3>
-          <p>Konten gratis</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="thumbnail">▶</div>
-        <div class="card-info">
-          <span class="tag">GRATIS</span>
-          <h3>Free Collection 02</h3>
-          <p>Konten gratis</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="thumbnail">▶</div>
-        <div class="card-info">
-          <span class="tag">GRATIS</span>
-          <h3>Free Collection 03</h3>
-          <p>Konten gratis</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="thumbnail">▶</div>
-        <div class="card-info">
-          <span class="tag">GRATIS</span>
-          <h3>Free Collection 04</h3>
-          <p>Konten gratis</p>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- VIP -->
-  <section class="section" id="vip">
-    <div class="section-title">
-      <h2>Konten Berbayar</h2>
-      <span class="vip-label">VIP EXCLUSIVE</span>
-    </div>
-
-    <div class="content-grid">
-
-      <article class="card">
-        <div class="vip-thumbnail">
-          <div class="vip-content">
-            <div class="vip-lock">🔒</div>
-            <h3>KHUSUS VIP</h3>
-            <button onclick="getVIP()">KLIK UNTUK DAPAT VIP</button>
-          </div>
-        </div>
-        <div class="card-info">
-          <span class="tag">VIP ONLY</span>
-          <h3>Premium Collection 01</h3>
-          <p>Konten khusus member VIP</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="vip-thumbnail">
-          <div class="vip-content">
-            <div class="vip-lock">🔒</div>
-            <h3>KHUSUS VIP</h3>
-            <button onclick="getVIP()">KLIK UNTUK DAPAT VIP</button>
-          </div>
-        </div>
-        <div class="card-info">
-          <span class="tag">VIP ONLY</span>
-          <h3>Premium Collection 02</h3>
-          <p>Konten khusus member VIP</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="vip-thumbnail">
-          <div class="vip-content">
-            <div class="vip-lock">🔒</div>
-            <h3>KHUSUS VIP</h3>
-            <button onclick="getVIP()">KLIK UNTUK DAPAT VIP</button>
-          </div>
-        </div>
-        <div class="card-info">
-          <span class="tag">VIP ONLY</span>
-          <h3>Premium Collection 03</h3>
-          <p>Konten khusus member VIP</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="vip-thumbnail">
-          <div class="vip-content">
-            <div class="vip-lock">🔒</div>
-            <h3>KHUSUS VIP</h3>
-            <button onclick="getVIP()">KLIK UNTUK DAPAT VIP</button>
-          </div>
-        </div>
-        <div class="card-info">
-          <span class="tag">VIP ONLY</span>
-          <h3>Premium Collection 04</h3>
-          <p>Konten khusus member VIP</p>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  © 2026 AFTERDARK. All Rights Reserved.
-</footer>
-
 <script>
-function enterSite() {
-  sessionStorage.setItem("ageVerified","yes");
-  document.getElementById("ageOverlay").classList.add("hidden");
+const API="https://script.google.com/macros/s/AKfycbxqINgb_M0tdPCkM9QTeduy6LxSMQMUUl4lWOPeHfdx2Adu1dNvT-BZD8wPtAzXsMo/exec";let allVideos=[],slides=[],current=0,timer=null;
+async function api(payload){const r=await fetch(API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});return await r.json()}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function safeUrl(s){try{const u=new URL(s,location.href);return ["http:","https:"].includes(u.protocol)?u.href:"#"}catch(e){return "#"}}
+function linkify(text){const safe=esc(text);return safe.replace(/(https?:\/\/[^\s<]+)/g,url=>`<a href="${safeUrl(url)}" target="_blank" rel="noopener noreferrer">${url}</a>`).replace(/\n/g,"<br>")}
+function renderSlides(items){slides=items||[];const host=document.getElementById("slides"),dots=document.getElementById("dots");if(!slides.length){host.innerHTML='<article class="slide"><div class="slideText"><h1>Selamat datang di TOBRUTHOT</h1><p>Jelajahi koleksi konten dan hiburan dalam satu platform.</p></div></article>';dots.innerHTML="";document.querySelectorAll(".arrow").forEach(x=>x.style.display="none");return}
+document.querySelectorAll(".arrow").forEach(x=>x.style.display=slides.length>1?"block":"none");
+host.innerHTML=slides.map(s=>`<article class="slide" style="background-image:url('${esc(s.imageUrl)}')"><div class="slideText"><h1>${esc(s.title)}</h1>${s.buttonText?`<a class="cta" href="${safeUrl(s.linkUrl||"#")}" ${s.linkUrl?'target="_blank" rel="noopener noreferrer"':""}>${esc(s.buttonText)}</a>`:(s.linkUrl?`<a class="cta" href="${safeUrl(s.linkUrl)}" target="_blank" rel="noopener noreferrer">Lihat selengkapnya</a>`:"")}</div></article>`).join("");
+dots.innerHTML=slides.map((s,i)=>`<button aria-label="Slide ${i+1}" class="${i===0?"active":""}" data-dot="${i}"></button>`).join("");dots.querySelectorAll("button").forEach(b=>b.onclick=()=>go(Number(b.dataset.dot)));current=0;updateSlide();if(timer)clearInterval(timer);if(slides.length>1)timer=setInterval(()=>go((current+1)%slides.length),5500)}
+function updateSlide(){document.getElementById("slides").style.transform=`translateX(-${current*100}%)`;document.querySelectorAll("[data-dot]").forEach((b,i)=>b.classList.toggle("active",i===current))}
+function go(n){if(!slides.length)return;current=(n+slides.length)%slides.length;updateSlide()}
+document.getElementById("prev").onclick=()=>go(current-1);document.getElementById("next").onclick=()=>go(current+1);
+function card(v,isVip){const locked=isVip&&!v.videoUrl;return `<article class="card ${locked?"locked":""}"><img class="thumb" src="${safeUrl(v.thumbnailUrl||"")}" alt=""><div class="cardBody"><h3>${esc(v.title)}</h3>${v.caption?`<p><b>${esc(v.caption)}</b></p>`:""}${v.description?`<p class="desc">${linkify(v.description)}</p>`:""}${locked?'<button class="play" onclick="enterVip()">Khusus VIP · Masukkan kode</button>':`<button class="play" data-watch="${esc(v.videoUrl||"")}">▶ Putar video</button>`}</div></article>`}
+function renderVideos(){const q=document.getElementById("search").value.toLowerCase();const free=allVideos.filter(v=>v.accessType==="FREE"&&(v.title+" "+v.caption+" "+v.description).toLowerCase().includes(q));const vip=allVideos.filter(v=>v.accessType==="VIP"&&(v.title+" "+v.caption+" "+v.description).toLowerCase().includes(q));document.getElementById("freeCards").innerHTML=free.length?free.map(v=>card(v,false)).join(""):'<div class="empty">Belum ada konten gratis.</div>';document.getElementById("vipCards").innerHTML=vip.length?vip.map(v=>card(v,true)).join(""):'<div class="empty">Belum ada konten VIP.</div>'}
+async function load(){try{const [s,v]=await Promise.all([api({action:"listSlides"}),api({action:"listVideos",vipCode:localStorage.getItem("tb_vip_code")||""})]);renderSlides(s.success?s.data:[]);allVideos=v.success?v.data:[];renderVideos()}catch(e){document.getElementById("freeCards").innerHTML='<div class="empty">Konten belum dapat dimuat.</div>'}}
+let vipPopupSettings={};
+async function loadVipPopupSettings(){
+ try{
+  const r=await api({action:"getPublicSettings"});
+  if(r.success)vipPopupSettings=r.data||{};
+ }catch(e){}
+ document.getElementById("vipModalTitle").textContent=vipPopupSettings.vipPopupTitle||"AKSES MEMBER VIP";
+ document.getElementById("vipPopupMessage").textContent=vipPopupSettings.vipPopupMessage||"Silakan ikuti petunjuk untuk mendapatkan akses VIP.";
+ document.getElementById("vipPopupCodeLabel").textContent=vipPopupSettings.vipPopupCodeLabel||"Sudah punya kode VIP? Masukkan kode kamu di sini.";
+ const link=String(vipPopupSettings.vipPopupLink||"").trim();
+ const row=document.getElementById("vipPopupLinkRow"),a=document.getElementById("vipPopupLink");
+ if(link && /^https?:\/\//i.test(link)){
+  a.href=link;a.textContent=vipPopupSettings.vipPopupLinkText||"DAPATKAN AKSES VIP";row.style.display="block";
+ }else{row.style.display="none"}
 }
-
-function exitSite() {
-  window.location.href="about:blank";
+function enterVip(){
+ document.getElementById("vipCodeMessage").textContent="";
+ document.getElementById("vipCodeInput").value="";
+ document.getElementById("vipAccessModal").classList.add("open");
+ document.getElementById("vipAccessModal").setAttribute("aria-hidden","false");
+ loadVipPopupSettings().then(()=>document.getElementById("vipCodeInput").focus());
 }
-
-if(sessionStorage.getItem("ageVerified")==="yes") {
-  document.getElementById("ageOverlay").classList.add("hidden");
+function closeVipModal(){
+ document.getElementById("vipAccessModal").classList.remove("open");
+ document.getElementById("vipAccessModal").setAttribute("aria-hidden","true");
 }
-
-function getVIP() {
-  window.location.href="vip.html";
-}
-
-// Search
-document.getElementById("searchInput").addEventListener("input",function() {
-  let keyword=this.value.toLowerCase();
-
-  document.querySelectorAll(".card").forEach(card=>{
-    card.style.display=card.innerText.toLowerCase().includes(keyword)
-      ?"block":"none";
-  });
+document.getElementById("vipAccessModal").addEventListener("click",e=>{if(e.target.id==="vipAccessModal")closeVipModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeVipModal()});
+document.getElementById("vipCodeForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ const code=document.getElementById("vipCodeInput").value.trim();
+ const msg=document.getElementById("vipCodeMessage"),btn=document.getElementById("vipCodeSubmit");
+ if(!code)return;
+ btn.disabled=true;btn.textContent="MEMERIKSA...";
+ msg.textContent="";
+ try{
+  const r=await api({action:"validateCode",code});
+  if(!r.success || !r.data || !r.data.valid)throw new Error(r.data?.message||r.message||"Kode VIP tidak valid.");
+  localStorage.setItem("tb_vip_code",code);
+  closeVipModal();
+  await load();
+  document.getElementById("vip").scrollIntoView({behavior:"smooth",block:"start"});
+ }catch(err){msg.textContent=err.message||"Gagal memeriksa kode VIP."}
+ finally{btn.disabled=false;btn.textContent="AKTIFKAN VIP"}
 });
-</script>
-
-</body>
-</html>
+document.getElementById("search").addEventListener("input",renderVideos);
+function closePlayer(){document.getElementById("playerFrame").src="about:blank";document.getElementById("playerModal").style.display="none"}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-watch]");if(!b)return;document.getElementById("playerFrame").src=safeUrl(b.dataset.watch);document.getElementById("playerModal").style.display="flex"});
+loadVipPopupSettings();load();
+</script></body></html>

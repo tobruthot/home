@@ -31,7 +31,7 @@
 </section>
 </main>
 <script>
-const API="https://script.google.com/macros/s/AKfycbxqINgb_M0tdPCkM9QTeduy6LxSMQMUUl4lWOPeHfdx2Adu1dNvT-BZD8wPtAzXsMo/exec",token=sessionStorage.getItem("tb_admin_token");
+const API="https://script.google.com/macros/s/AKfycbwWxO2U1Ku0fa4NEZhUGsRujd4Fe4DnDmNo96YjFqtvCimR2Ish1S9AKeVxChORveMqGA/exec",token=sessionStorage.getItem("tb_admin_token");
 if(!token)location.replace("/home/panel/login/index.html");
 async function api(action,extra={}){const r=await fetch(API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action,sessionToken:token,...extra})});const j=await r.json();if(!j.success){if((j.message||"").toLowerCase().includes("sesi")){sessionStorage.removeItem("tb_admin_token");location.replace("/home/panel/login/index.html")}throw new Error(j.message||"API error")}return j.data}
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}

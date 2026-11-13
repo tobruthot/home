@@ -17,7 +17,7 @@
 <button class="btn" type="submit" id="save">Simpan video</button><button class="btn secondary" type="button" id="reset">Bersihkan form</button><div class="msg" id="msg"></div>
 </form></section><aside class="panel"><div style="display:flex;justify-content:space-between;align-items:center"><h2>Daftar video</h2><button class="btn secondary" id="refresh" style="margin:0">Refresh</button></div><div id="list" class="hint">Memuat...</div></aside></div></main>
 <script>
-const API="https://script.google.com/macros/s/AKfycbxqINgb_M0tdPCkM9QTeduy6LxSMQMUUl4lWOPeHfdx2Adu1dNvT-BZD8wPtAzXsMo/exec",token=sessionStorage.getItem("tb_admin_token");if(!token)location.replace("/home/panel/login/index.html");
+const API="https://script.google.com/macros/s/AKfycbz-Kn2Dvg9yq3k80qpSf6bkDgg_pVti92rrc0v5428jK1yaSCroRu1HPdU0mE754oI2NA/exec",token=sessionStorage.getItem("tb_admin_token");if(!token)location.replace("/home/panel/login/index.html");
 async function api(action,extra={}){const r=await fetch(API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action,sessionToken:token,...extra})});const j=await r.json();if(!j.success){if((j.message||"").toLowerCase().includes("sesi"))location.replace("/home/panel/login/index.html");throw new Error(j.message||"API error")}return j.data}
 const $=id=>document.getElementById(id);function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 const CHUNK_SIZE=256*1024;

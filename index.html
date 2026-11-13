@@ -1,0 +1,534 @@
+# Homepage Portal 18+
+
+Simpan kode berikut sebagai `index.html`, kemudian buka melalui browser.
+
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AFTERDARK — 18+ Portal</title>
+
+<style>
+:root {
+  --bg: #101014;
+  --panel: #19191f;
+  --panel2: #22222a;
+  --text: #f5f5f7;
+  --muted: #92929d;
+  --accent: #e83c75;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+}
+
+header {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  background: #17171c;
+  border-bottom: 1px solid #292930;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+nav {
+  display: flex;
+  gap: 25px;
+}
+
+nav a {
+  color: #bdbdc5;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+.search {
+  background: #25252d;
+  padding: 11px 15px;
+  border-radius: 8px;
+  border: 1px solid #34343d;
+  color: white;
+  width: 210px;
+  outline: none;
+}
+
+.container {
+  width: 90%;
+  max-width: 1400px;
+  margin: auto;
+}
+
+.hero {
+  margin-top: 30px;
+  height: 300px;
+  border-radius: 14px;
+  background:
+    linear-gradient(90deg, #17171f 5%, rgba(23,23,31,.8) 50%, transparent),
+    linear-gradient(135deg, #57203c, #24182c 60%, #14141b);
+  display: flex;
+  align-items: center;
+  padding: 45px;
+}
+
+.hero-content {
+  max-width: 500px;
+}
+
+.hero h1 {
+  font-size: 38px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  color: #c2c2ca;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 7px;
+  padding: 12px 22px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.section {
+  margin-top: 35px;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.section-title h2 {
+  font-size: 21px;
+}
+
+.section-title a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.categories {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.category {
+  background: var(--panel2);
+  border: 1px solid #34343d;
+  color: #ddd;
+  padding: 11px 19px;
+  border-radius: 30px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.category.active,
+.category:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: var(--panel);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #292930;
+  transition: .2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.thumbnail {
+  height: 160px;
+  background: linear-gradient(135deg, #472239, #252535);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 38px;
+}
+
+.card-info {
+  padding: 14px;
+}
+
+.card-info h3 {
+  font-size: 15px;
+  margin-bottom: 9px;
+}
+
+.card-info p {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.tag {
+  display: inline-block;
+  color: #ff8eb1;
+  background: #492136;
+  font-size: 10px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+footer {
+  margin-top: 60px;
+  background: #17171c;
+  padding: 30px 5%;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  border-top: 1px solid #292930;
+}
+
+.age-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0,0,0,.96);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.age-box {
+  background: #1b1b22;
+  border: 1px solid #393943;
+  padding: 40px;
+  border-radius: 14px;
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+}
+
+.age-box h2 {
+  margin-bottom: 15px;
+  color: var(--accent);
+}
+
+.age-box p {
+  color: #aaa;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.age-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.age-actions button {
+  flex: 1;
+}
+
+.exit-btn {
+  background: #383840;
+}
+
+.hidden {
+  display: none;
+}
+
+@media(max-width: 950px) {
+  .content-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  nav {
+    gap: 12px;
+  }
+}
+
+@media(max-width: 650px) {
+  header {
+    height: auto;
+    padding: 18px 5%;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  nav {
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .search {
+    width: 150px;
+  }
+
+  .hero {
+    height: 260px;
+    padding: 25px;
+  }
+
+  .hero h1 {
+    font-size: 27px;
+  }
+
+  .content-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .thumbnail {
+    height: 120px;
+  }
+
+  .card-info {
+    padding: 10px;
+  }
+
+  .age-box {
+    padding: 25px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="age-overlay" id="ageOverlay">
+  <div class="age-box">
+    <h2>18+ AGE VERIFICATION</h2>
+    <p>
+      Website ini ditujukan khusus untuk pengunjung
+      berusia 18 tahun ke atas. Apakah kamu sudah
+      berusia minimal 18 tahun?
+    </p>
+    <div class="age-actions">
+      <button class="btn" onclick="enterSite()">YA, SAYA 18+</button>
+      <button class="btn exit-btn" onclick="exitSite()">TIDAK</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="logo">AFTER<span>DARK</span></div>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#categories">Kategori</a>
+    <a href="#latest">Terbaru</a>
+    <a href="#popular">Popular</a>
+  </nav>
+
+  <input class="search" id="searchInput"
+    placeholder="Cari konten...">
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <div class="hero-content">
+      <span class="tag">EXCLUSIVE COLLECTION</span>
+      <h1>Welcome to AfterDark</h1>
+      <p>
+        Jelajahi koleksi konten hiburan dan komunitas
+        dengan tampilan modern dalam satu platform.
+      </p>
+      <button class="btn"
+        onclick="document.getElementById('latest').scrollIntoView({behavior:'smooth'})">
+        JELAJAHI SEKARANG
+      </button>
+    </div>
+  </section>
+
+  <section class="section" id="categories">
+    <div class="section-title">
+      <h2>Kategori</h2>
+    </div>
+
+    <div class="categories">
+      <button class="category active" data-category="all">Semua</button>
+      <button class="category" data-category="premium">Premium</button>
+      <button class="category" data-category="community">Komunitas</button>
+      <button class="category" data-category="entertainment">Hiburan</button>
+      <button class="category" data-category="latest">Terbaru</button>
+    </div>
+  </section>
+
+  <section class="section" id="latest">
+    <div class="section-title">
+      <h2>Konten Terbaru</h2>
+      <a href="#">Lihat Semua</a>
+    </div>
+
+    <div class="content-grid" id="contentGrid">
+
+      <article class="card" data-category="premium">
+        <div class="thumbnail">▶</div>
+        <div class="card-info">
+          <span class="tag">PREMIUM</span>
+          <h3>Exclusive Collection 01</h3>
+          <p>Konten pilihan · 12 menit</p>
+        </div>
+      </article>
+
+      <article class="card" data-category="community">
+        <div class="thumbnail">◆</div>
+        <div class="card-info">
+          <span class="tag">COMMUNITY</span>
+          <h3>Community Stories</h3>
+          <p>Komunitas · 8 menit</p>
+        </div>
+      </article>
+
+      <article class="card" data-category="entertainment">
+        <div class="thumbnail">✦</div>
+        <div class="card-info">
+          <span class="tag">HIBURAN</span>
+          <h3>Entertainment Zone</h3>
+          <p>Hiburan · 15 menit</p>
+        </div>
+      </article>
+
+      <article class="card" data-category="latest">
+        <div class="thumbnail">★</div>
+        <div class="card-info">
+          <span class="tag">NEW</span>
+          <h3>New Arrival 04</h3>
+          <p>Terbaru · 10 menit</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section" id="popular">
+    <div class="section-title">
+      <h2>Popular Collection</h2>
+      <a href="#">Lihat Semua</a>
+    </div>
+
+    <div class="content-grid">
+      <article class="card">
+        <div class="thumbnail">◆</div>
+        <div class="card-info">
+          <span class="tag">POPULAR</span>
+          <h3>Featured Collection</h3>
+          <p>Rekomendasi pilihan</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="thumbnail">▶</div>
+        <div class="card-info">
+          <span class="tag">TRENDING</span>
+          <h3>Trending Content</h3>
+          <p>Paling banyak dikunjungi</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 AFTERDARK. All Rights Reserved.</p>
+  <p style="margin-top:10px">
+    18+ Only · Privacy Policy · Terms of Service
+  </p>
+</footer>
+
+<script>
+function enterSite() {
+  sessionStorage.setItem("ageVerified", "yes");
+  document.getElementById("ageOverlay").classList.add("hidden");
+}
+
+function exitSite() {
+  window.location.href = "about:blank";
+}
+
+if (sessionStorage.getItem("ageVerified") === "yes") {
+  document.getElementById("ageOverlay").classList.add("hidden");
+}
+
+// Filter kategori
+const categoryButtons = document.querySelectorAll(".category");
+const cards = document.querySelectorAll("#contentGrid .card");
+
+categoryButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    categoryButtons.forEach(b => b.classList.remove("active"));
+    button.classList.add("active");
+
+    const category = button.dataset.category;
+
+    cards.forEach(card => {
+      card.style.display =
+        category === "all" || card.dataset.category === category
+        ? "block" : "none";
+    });
+  });
+});
+
+// Pencarian
+document.getElementById("searchInput")
+.addEventListener("input", function() {
+  const keyword = this.value.toLowerCase();
+
+  cards.forEach(card => {
+    const title = card.innerText.toLowerCase();
+    card.style.display = title.includes(keyword)
+      ? "block" : "none";
+  });
+});
+</script>
+
+</body>
+</html>
+```
+
